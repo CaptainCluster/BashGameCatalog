@@ -17,7 +17,7 @@ saveCollection(){
 
 loadCollection(){ 
     local videoGameCollection=() #Defining a new array to use
-    local saveFile="collection.txt"
+    local saveFile="save_files/collection.txt"
 
     #We'll use a while-loop to add the contents of the file, line by line,
     #into the array.

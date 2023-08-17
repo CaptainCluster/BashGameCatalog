@@ -3,8 +3,8 @@
 
 #mainFunction is the function that is started initially
 mainFunction(){
-    source ./savemanager.sh
-    source ./exceptions.sh
+    source src/savemanager.sh
+    source src/exceptions.sh
 
     videoGameCollection=$(loadCollection)
 
@@ -17,7 +17,7 @@ mainFunction(){
         case $option in 
             1)
                 videoGameCollection=$(addToCollection "${videoGameCollection[@]}")
-                saveCollection "${videoGameCollection[@]}" "collection.txt"
+                saveCollection "${videoGameCollection[@]}" "save_files/collection.txt"
                 ;;
             2)
                 removeFromCollection "${videoGameCollection[@]}"
@@ -27,10 +27,10 @@ mainFunction(){
                 displayCollection
                 ;;
             4)
-                saveCollection "${videoGameCollection[@]}" "backup.txt"
+                saveCollection "${videoGameCollection[@]}" "save_files/backup.txt"
                 ;;
             5)
-                cp "backup.txt" "collection.txt"
+                cp "save_files/backup.txt" "save_files/collection.txt"
                 videoGameCollection=$(loadCollection)
                 ;;
             0)
@@ -67,8 +67,8 @@ addToCollection(){
 #Removes games from the collection based on a pattern given by the user
 removeFromCollection(){
     videoGameCollection=$1
-    temporaryHolder="temporary.txt"
-    saveFile="collection.txt"
+    temporaryHolder="save_files/temporary.txt"
+    saveFile="save_files/collection.txt"
 
     read -p "What game shall we remove: " pattern 
     condition=$(checkPattern "$pattern")
